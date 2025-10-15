@@ -1,51 +1,67 @@
 package com.moonnieyy.anmpproject.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.moonnieyy.anmpproject.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.moonnieyy.anmpproject.databinding.FragmentDataBinding
+import com.moonnieyy.anmpproject.viewmodel.DataViewModel
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 class FragmentData : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentDataBinding
+    private lateinit var viewModel: DataViewModel
+    private val dataListAdapter = DataListAdapter(arrayListOf())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_data, container, false)
+    ): View {
+        binding = FragmentDataBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FragmentData.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FragmentData().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // init ViewModel
+        viewModel = ViewModelProvider(this).get(DataViewModel::class.java)
+        viewModel.fetchData()
+
+        // setup RecyclerView
+        binding.recViewData.layoutManager = LinearLayoutManager(context)
+        binding.recViewData.adapter = dataListAdapter
+
+        // pull-to-refresh
+        binding.refreshLayout.setOnRefreshListener {
+            binding.recViewData.visibility = View.GONE
+            binding.txtError.visibility = View.GONE
+            binding.progressLoad.visibility = View.VISIBLE
+            viewModel.fetchData()
+            binding.refreshLayout.isRefreshing = false
+        }
+
+        // observe ViewModel
+        observeViewModel()
+    }
+
+    private fun observeViewModel() {
+        viewModel.dataUkurLD.observe(viewLifecycleOwner, Observer {
+            dataListAdapter.updateDataList(it)
+            binding.recViewData.visibility = View.VISIBLE
+            binding.txtError.visibility = View.GONE
+            binding.progressLoad.visibility = View.GONE
+        })
+
+        viewModel.loadErrorLD.observe(viewLifecycleOwner, Observer { isError ->
+            binding.txtError.visibility = if (isError) View.VISIBLE else View.GONE
+        })
+
+        viewModel.loadingLD.observe(viewLifecycleOwner, Observer { isLoading ->
+            binding.progressLoad.visibility = if (isLoading) View.VISIBLE else View.GONE
+        })
     }
 }
