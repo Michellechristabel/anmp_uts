@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_navigation">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navukurkeprofil"
+    app:startDestination="@id/fragmentUkur">
+
+    <!-- Fragment Ukur -->
+    <fragment
+        android:id="@+id/fragmentUkur"
+        android:name="com.moonnieyy.anmpproject.view.FragmentUkur"
+        android:label="Ukur"
+        tools:layout="@layout/fragment_ukur" >
+        <action
+            android:id="@+id/navprofilkeanak"
+            app:destination="@id/fragmentProfilAnak" />
+    </fragment>
+
+    <!-- Fragment Data -->
+    <fragment
+        android:id="@+id/fragmentData"
+        android:name="com.moonnieyy.anmpproject.view.FragmentData"
+        android:label="Data"
+        tools:layout="@layout/fragment_data" />
+
+    <!-- Fragment Profil Anak -->
+    <fragment
+        android:id="@+id/fragmentProfilAnak"
+        android:name="com.moonnieyy.anmpproject.view.FragmentProfilAnak"
+        android:label="Profil Anak"
+        tools:layout="@layout/fragment_profil_anak" >
+        <action
+            android:id="@+id/navprofilkedata"
+            app:destination="@id/fragmentData" />
+    </fragment>
 
 </navigation>

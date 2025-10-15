@@ -1,7 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.FragmentData"/>
+    tools:context=".view.FragmentData">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="24dp">
+
+        <!-- Judul Halaman -->
+        <TextView
+            android:id="@+id/titleData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data Pengukuran"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Deskripsi -->
+        <TextView
+            android:id="@+id/descData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Berikut hasil pengukuran berat, tinggi, dan usia anak:"
+            android:textSize="14sp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/titleData"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- RecyclerView (Daftar Data) -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewData"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/descData"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+           />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
