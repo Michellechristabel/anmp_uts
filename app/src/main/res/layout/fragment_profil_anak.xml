@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.FragmentProfilAnak">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="24dp">
+
+        <!-- Judul Halaman -->
+        <TextView
+            android:id="@+id/titleProfilAnak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profil Anak"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Label Nama Anak -->
+        <TextView
+            android:id="@+id/labelNama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Nama Anak"
+            app:layout_constraintTop_toBottomOf="@id/titleProfilAnak"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- Input Nama Anak -->
+        <EditText
+            android:id="@+id/inputNamaAnak"
+            android:layout_width="376dp"
+            android:layout_height="74dp"
+            android:layout_marginTop="8dp"
+            android:hint="Masukkan nama anak"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/labelNama" />
+
+        <!-- Label Tanggal Lahir -->
+        <TextView
+            android:id="@+id/labelTanggalLahir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Tanggal Lahir"
+            app:layout_constraintTop_toBottomOf="@id/inputNamaAnak"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- Input Tanggal Lahir -->
+        <EditText
+            android:id="@+id/inputTanggalLahir"
+            android:layout_width="372dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="8dp"
+            android:hint="Pilih tanggal lahir"
+            android:inputType="date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/labelTanggalLahir" />
+
+        <!-- Label Jenis Kelamin -->
+        <TextView
+            android:id="@+id/labelJenisKelamin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Jenis Kelamin"
+            app:layout_constraintTop_toBottomOf="@id/inputTanggalLahir"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- Pilihan Jenis Kelamin -->
+        <RadioGroup
+            android:id="@+id/radioGroupGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/labelJenisKelamin"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <RadioButton
+                android:id="@+id/radioLaki"
+                android:layout_width="106dp"
+                android:layout_height="65dp"
+                android:text="Laki-laki" />
+
+            <RadioButton
+                android:id="@+id/radioPerempuan"
+                android:layout_width="118dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="24dp"
+                android:text="Perempuan" />
+        </RadioGroup>
+
+        <!-- Tombol Simpan Data -->
+        <Button
+            android:id="@+id/btnSimpanProfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:text="Simpan Data"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.055"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/radioGroupGender" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

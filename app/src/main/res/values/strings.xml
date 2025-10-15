@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AnmpProject</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="masukkan_tinggi">Masukkan tinggi</string>
+    <string name="usia_tahun">Usia (tahun)</string>
+    <string name="tinggi_badan_cm">Tinggi Badan (cm)</string>
 </resources>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.FragmentUkur">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="24dp">
+
+        <!-- Label & Input Berat Badan -->
+        <TextView
+            android:id="@+id/labelBeratBadan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Berat Badan (Kg)"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/inputBeratBadan"
+            android:layout_width="366dp"
+            android:layout_height="71dp"
+            android:layout_marginTop="8dp"
+            android:hint="Masukkan berat badan"
+            android:inputType="numberDecimal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/labelBeratBadan" />
+
+        <!-- Label & Input Tinggi Badan -->
+        <TextView
+            android:id="@+id/labelTinggiBadan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Tinggi Badan (Cm)"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/inputBeratBadan"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/inputTinggiBadan"
+            android:layout_width="374dp"
+            android:layout_height="71dp"
+            android:layout_marginTop="8dp"
+            android:hint="Masukkan tinggi badan"
+            android:inputType="numberDecimal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/labelTinggiBadan" />
+
+        <!-- Label & Input Usia -->
+        <TextView
+            android:id="@+id/labelUsia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Usia (Tahun)"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/inputTinggiBadan"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/inputUsia"
+            android:layout_width="362dp"
+            android:layout_height="71dp"
+            android:layout_marginTop="8dp"
+            android:hint="Masukkan usia anak"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/labelUsia" />
+
+        <!-- Tombol Tambah Data -->
+        <Button
+            android:id="@+id/btnTambahData"
+            android:layout_width="157dp"
+            android:layout_height="62dp"
+            android:layout_marginTop="32dp"
+            android:text="Tambah Data"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/inputUsia" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
