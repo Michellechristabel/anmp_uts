@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="labelBerat" type="id">labelBerat</item>
-    <item name="inputBerat" type="id">inputBerat</item>
-    <item name="inputTinggi" type="id">inputTinggi</item>
-    <item name="labelTinggi" type="id">labelTinggi</item>
+    <item name="labelBerat" type="id" />
+    <item name="inputBerat" type="id" />
+    <item name="inputTinggi" type="id" />
+    <item name="labelTinggi" type="id" />
 </resources>
