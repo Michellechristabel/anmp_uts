@@ -47,7 +47,7 @@ class FragmentProfilAnak : Fragment() {
                 Toast.makeText(context, "Data profil berhasil disimpan", Toast.LENGTH_SHORT).show()
 
                 // Navigasi ke Fragment Data
-                findNavController().navigate(R.id.navProfilKeData)
+                findNavController().navigate(R.id.navprofilkedata)
             }
         }
 
