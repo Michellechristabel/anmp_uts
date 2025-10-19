@@ -27,14 +27,13 @@ class FragmentUkur : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Inisialisasi ViewModel
         viewModel = ViewModelProvider(this).get(UkurViewModel::class.java)
-
-        // Tombol Tambah Data
+        
         binding.btnTambahData.setOnClickListener {
             val berat = binding.inputBeratBadan.text.toString()
             val tinggi = binding.inputTinggiBadan.text.toString()
             val usia = binding.inputUsia.text.toString()
+
 
             if (berat.isNotEmpty() && tinggi.isNotEmpty() && usia.isNotEmpty()) {
                 viewModel.simpanData(berat, tinggi, usia)

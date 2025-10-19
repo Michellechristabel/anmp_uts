@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.moonnieyy.anmpproject"
-    compileSdk = 35
+    compileSdk = 36
 
     buildFeatures{
         viewBinding = true

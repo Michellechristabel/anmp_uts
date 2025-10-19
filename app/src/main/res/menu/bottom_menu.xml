@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/fragmentUkur"
+        android:title="Ukur"
+        app:icon="@drawable/ic_ruler" />
+
+    <item
+        android:id="@+id/fragmentData"
+        android:title="Data"
+        app:icon="@drawable/outline_database_24" />
+
+    <item
+        android:id="@+id/fragmentProfilAnak"
+        android:title="Profil"
+        app:icon="@drawable/outline_account_circle_24" />
+</menu>

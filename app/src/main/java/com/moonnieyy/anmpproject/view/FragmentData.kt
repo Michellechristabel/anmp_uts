@@ -32,17 +32,10 @@ class FragmentData : Fragment() {
         viewModel.fetchData()
 
         // setup RecyclerView
-        binding.recViewData.layoutManager = LinearLayoutManager(context)
-        binding.recViewData.adapter = dataListAdapter
+        binding.recyclerViewData.layoutManager = LinearLayoutManager(context)
+        binding.recyclerViewData.adapter = dataListAdapter
 
-        // pull-to-refresh
-        binding.refreshLayout.setOnRefreshListener {
-            binding.recViewData.visibility = View.GONE
-            binding.txtError.visibility = View.GONE
-            binding.progressLoad.visibility = View.VISIBLE
-            viewModel.fetchData()
-            binding.refreshLayout.isRefreshing = false
-        }
+
 
         // observe ViewModel
         observeViewModel()
@@ -51,17 +44,9 @@ class FragmentData : Fragment() {
     private fun observeViewModel() {
         viewModel.dataUkurLD.observe(viewLifecycleOwner, Observer {
             dataListAdapter.updateDataList(it)
-            binding.recViewData.visibility = View.VISIBLE
-            binding.txtError.visibility = View.GONE
-            binding.progressLoad.visibility = View.GONE
+            binding.recyclerViewData.visibility = View.VISIBLE
+
         })
 
-        viewModel.loadErrorLD.observe(viewLifecycleOwner, Observer { isError ->
-            binding.txtError.visibility = if (isError) View.VISIBLE else View.GONE
-        })
-
-        viewModel.loadingLD.observe(viewLifecycleOwner, Observer { isLoading ->
-            binding.progressLoad.visibility = if (isLoading) View.VISIBLE else View.GONE
-        })
     }
 }

@@ -7,7 +7,7 @@ import com.moonnieyy.anmpproject.databinding.ItemDataBinding
 
 class DataListAdapter(private var dataList: ArrayList<String>) :
     RecyclerView.Adapter<DataListAdapter.DataViewHolder>() {
-
+    
     class DataViewHolder(val binding: ItemDataBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
