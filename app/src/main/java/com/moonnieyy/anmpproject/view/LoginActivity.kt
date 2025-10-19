@@ -7,13 +7,17 @@ import android.os.PersistableBundle
 import android.util.AttributeSet
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.android.volley.toolbox.Volley
 import com.moonnieyy.anmpproject.databinding.ActivityLoginBinding
+import com.moonnieyy.anmpproject.viewmodel.LoginViewModel
 import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var viewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +38,23 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnLogin.setOnClickListener {
+        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
+        binding.btnLogin.setOnClickListener {
+            val email = binding.txtEmail.text.toString()
+            val password = binding.txtPassword.text.toString()
         }
+
+        binding.btnRegister.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
+
+        observeViewModel()
+    }
+
+    private fun observeViewModel() {
+//        viewModel.loginResult.observe(this) { response ->
+//            if(response?.getBoolean("success") == true) {)
+
+    }
 }
