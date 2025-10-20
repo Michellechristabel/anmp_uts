@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.moonnieyy.anmpproject.R
 import com.moonnieyy.anmpproject.databinding.FragmentLoginActivityBinding
@@ -26,10 +28,11 @@ class FragmentLoginActivity : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
-        // cek apakah user sudah login atau belum
         val sharedPreferences = requireContext().getSharedPreferences("user_session", Context.MODE_PRIVATE)
         val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
+
 
         if (isLoggedIn) {
             findNavController().navigate(R.id.toFragmentUkur)

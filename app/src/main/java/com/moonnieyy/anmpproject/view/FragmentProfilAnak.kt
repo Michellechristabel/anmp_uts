@@ -29,11 +29,9 @@ class FragmentProfilAnak : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Inisialisasi ViewModel
         viewModel = ViewModelProvider(this).get(ProfilViewModel::class.java)
         viewModel.loadData()
 
-        // Tombol Simpan Data
         binding.btnSimpanProfil.setOnClickListener {
             val nama = binding.inputNamaAnak.text.toString()
             val tanggal = binding.inputTanggalLahir.text.toString()

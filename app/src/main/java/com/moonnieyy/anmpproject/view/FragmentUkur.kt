@@ -39,12 +39,10 @@ class FragmentUkur : Fragment() {
                 viewModel.simpanData(berat, tinggi, usia)
                 Toast.makeText(context, "Data berhasil disimpan", Toast.LENGTH_SHORT).show()
 
-                // Kosongkan field setelah disimpan
                 binding.inputBeratBadan.text?.clear()
                 binding.inputTinggiBadan.text?.clear()
                 binding.inputUsia.text?.clear()
 
-                // Navigasi ke Fragment Profil Anak
                 findNavController().navigate(R.id.navprofilkeanak)
 
             } else {

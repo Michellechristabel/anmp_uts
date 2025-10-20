@@ -45,8 +45,6 @@ class FragmentData : Fragment() {
         viewModel.dataUkurLD.observe(viewLifecycleOwner, Observer {
             dataListAdapter.updateDataList(it)
             binding.recyclerViewData.visibility = View.VISIBLE
-
         })
-
     }
 }
