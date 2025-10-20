@@ -9,6 +9,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import com.moonnieyy.anmpproject.R
 import com.moonnieyy.anmpproject.databinding.ActivityMainBinding
 import com.moonnieyy.anmpproject.databinding.FragmentDataBinding
@@ -27,6 +28,14 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.hostFragment) as NavHostFragment
         navController = navHost.navController
 
-        NavigationUI.setupWithNavController(binding.bottomNav, navController)
+        NavigationUI.setupActionBarWithNavController(this, navController, binding.drawerLayout)
+        NavigationUI.setupWithNavController(binding.navView, navController)
+        binding.bottomNav.setupWithNavController(navController)
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return NavigationUI.navigateUp(navController, binding.drawerLayout)
+                || super.onSupportNavigateUp()
+    }
+
 }

@@ -2,8 +2,7 @@ package com.moonnieyy.anmpproject.model
 
 import com.google.gson.annotations.SerializedName
 
-
-data class Student(
+data class Profil(
     var id:String?,
     @SerializedName("weight")
     var weight:Int?,

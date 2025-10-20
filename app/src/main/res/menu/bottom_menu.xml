@@ -4,15 +4,18 @@
     <item
         android:id="@+id/fragmentUkur"
         android:title="Ukur"
-        app:icon="@drawable/ic_ruler" />
+        app:icon="@drawable/outline_accessible_menu_24"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/fragmentData"
         android:title="Data"
-        app:icon="@drawable/outline_database_24" />
+        app:icon="@drawable/outline_database_24"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/fragmentProfilAnak"
         android:title="Profil"
-        app:icon="@drawable/outline_account_circle_24" />
+        app:icon="@drawable/outline_account_circle_24"
+        app:showAsAction="always" />
 </menu>
