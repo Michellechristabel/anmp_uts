@@ -11,9 +11,13 @@
         android:name="com.moonnieyy.anmpproject.view.FragmentUkur"
         android:label="Ukur"
         tools:layout="@layout/fragment_ukur">
+
         <action
-            android:id="@+id/navprofilkeanak"
+            android:id="@+id/navukurkeprofil"
             app:destination="@id/fragmentProfilAnak" />
+        <action
+            android:id="@+id/navukurkedata"
+            app:destination="@id/fragmentData" />
     </fragment>
 
     <!-- Fragment Data -->
@@ -21,7 +25,15 @@
         android:id="@+id/fragmentData"
         android:name="com.moonnieyy.anmpproject.view.FragmentData"
         android:label="Data"
-        tools:layout="@layout/fragment_data" />
+        tools:layout="@layout/fragment_data">
+
+        <action
+            android:id="@+id/navdatakeukur"
+            app:destination="@id/fragmentUkur" />
+        <action
+            android:id="@+id/navdatakeprofil"
+            app:destination="@id/fragmentProfilAnak" />
+    </fragment>
 
     <!-- Fragment Profil Anak -->
     <fragment
@@ -29,14 +41,26 @@
         android:name="com.moonnieyy.anmpproject.view.FragmentProfilAnak"
         android:label="Profil Anak"
         tools:layout="@layout/fragment_profil_anak">
+
         <action
             android:id="@+id/navprofilkedata"
-            app:destination="@id/fragmentData" />
+            app:destination="@id/fragmentData"
+            app:popUpTo="@id/fragmentProfilAnak"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/navprofilkeukur"
+            app:destination="@id/fragmentUkur"
+            app:popUpTo="@id/fragmentProfilAnak"
+            app:popUpToInclusive="true" />
     </fragment>
+
+    <!-- Fragment Login -->
     <fragment
         android:id="@+id/fragmentLoginActivity"
         android:name="com.moonnieyy.anmpproject.view.FragmentLoginActivity"
         android:label="FragmentLoginActivity">
+
         <action
             android:id="@+id/toFragmentUkur"
             app:destination="@id/fragmentUkur" />
@@ -44,10 +68,13 @@
             android:id="@+id/toFragmentRegister"
             app:destination="@id/fragmentRegisterActivity" />
     </fragment>
+
+    <!-- Fragment Register -->
     <fragment
         android:id="@+id/fragmentRegisterActivity"
         android:name="com.moonnieyy.anmpproject.view.FragmentRegisterActivity"
         android:label="FragmentRegisterActivity">
+
         <action
             android:id="@+id/toFragmentLogin"
             app:destination="@id/fragmentLoginActivity" />
