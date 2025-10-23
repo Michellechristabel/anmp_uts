@@ -12,7 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.moonnieyy.anmpproject.R
 import com.moonnieyy.anmpproject.databinding.FragmentProfilAnakBinding
+import com.moonnieyy.anmpproject.util.FileHelper
 import com.moonnieyy.anmpproject.viewmodel.ProfilViewModel
+
 
 class FragmentProfilAnak : Fragment() {
     private lateinit var binding: FragmentProfilAnakBinding
@@ -31,6 +33,22 @@ class FragmentProfilAnak : Fragment() {
 
         viewModel = ViewModelProvider(this).get(ProfilViewModel::class.java)
         viewModel.loadData()
+
+        // panggil data user dari file lokal
+        val fileHelper = FileHelper(requireContext())
+        val fileData = fileHelper.readFromFile()
+
+        if (fileData.isNotEmpty()&& !fileData.contains("java.io")) {
+            val parts = fileData.split("|")
+            if (parts.size >= 2) {
+                val userId = parts[0]
+                val userName = parts[1]
+                binding.inputNamaAnak.setText(userName)
+                // Kalau mau ambil profil lengkap dari server
+                viewModel.getUserProfile(userId)
+            }
+        }
+
 
         binding.btnSimpanProfil.setOnClickListener {
             val nama = binding.inputNamaAnak.text.toString()
