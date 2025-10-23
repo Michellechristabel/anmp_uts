@@ -34,7 +34,6 @@ class FragmentLoginActivity : Fragment() {
         val sharedPreferences = requireContext().getSharedPreferences("user_session", Context.MODE_PRIVATE)
         val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
 
-
         if (isLoggedIn) {
             findNavController().navigate(R.id.toFragmentUkur)
             return
@@ -53,9 +52,9 @@ class FragmentLoginActivity : Fragment() {
                 with(sharedPreferences.edit()) {
                     putBoolean("isLoggedIn", true)
                     putString("userId", userId)
+                    putString("userName", userName) // 添加用户名保存
                     apply()
                 }
-
 
                 // simpan juga ke fileHelper (data lokal)
                 val fileHelper = FileHelper(requireContext())
@@ -68,9 +67,22 @@ class FragmentLoginActivity : Fragment() {
             }
         }
 
+        // 添加加载状态观察
+        viewModel.loadingLD.observe(viewLifecycleOwner) { isLoading ->
+            binding.btnLogin.isEnabled = !isLoading
+        }
+
+        // 添加错误状态观察
+        viewModel.loginErrorLD.observe(viewLifecycleOwner) { hasError ->
+            if (hasError) {
+                Toast.makeText(requireContext(), "Terjadi kesalahan, coba lagi", Toast.LENGTH_SHORT).show()
+            }
+        }
+
         binding.btnLogin.isEnabled = true
         binding.btnLogin.isClickable = true
         binding.btnLogin.bringToFront()
+
         // button login
         binding.btnLogin.setOnClickListener {
             android.util.Log.d("Login", "Login clicked")
@@ -81,7 +93,6 @@ class FragmentLoginActivity : Fragment() {
                 Toast.makeText(context, "Lengkapi semua data!", Toast.LENGTH_SHORT).show()
             } else {
                 viewModel.loginUser(email, password)
-
             }
         }
 

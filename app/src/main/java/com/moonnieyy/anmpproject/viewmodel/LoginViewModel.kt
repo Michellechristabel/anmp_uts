@@ -30,13 +30,14 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
             { response ->
                 try {
                     if (email.isNotEmpty() && password.isNotEmpty()) {
-                        val user = JSONObject().apply {
-                            put("email", email)
-                            put("name", "Test User")
-                        }
+                        // 修改JSON结构以匹配FragmentLoginActivity的期望
                         val result = JSONObject().apply {
                             put("success", true)
-                            put("user", user)
+                            put("data", JSONObject().apply {
+                                put("id", "user_${System.currentTimeMillis()}") // 生成唯一ID
+                                put("name", "Test User")
+                                put("email", email)
+                            })
                         }
                         loginResultLD.value = result
                     } else {
@@ -46,11 +47,13 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
                     loadingLD.value = false
                 } catch (e: Exception) {
+                    Log.e("LoginViewModel", "Error parsing response", e)
                     loginErrorLD.value = true
                     loadingLD.value = false
                 }
             },
             { error ->
+                Log.e("LoginViewModel", "Network error", error)
                 loginErrorLD.value = true
                 loadingLD.value = false
             }
