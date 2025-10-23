@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.moonnieyy.anmpproject.R
 import com.moonnieyy.anmpproject.databinding.FragmentLoginActivityBinding
+import com.moonnieyy.anmpproject.util.FileHelper
 import com.moonnieyy.anmpproject.viewmodel.LoginViewModel
 
 class FragmentLoginActivity : Fragment() {
@@ -43,13 +44,22 @@ class FragmentLoginActivity : Fragment() {
             if (response != null && response.optBoolean("success") == true) {
                 Toast.makeText(requireContext(), "Login berhasil!", Toast.LENGTH_SHORT).show()
 
+                val userId = response.getJSONObject("data").getString("id")
+                val userName = response.getJSONObject("data").getString("name")
+
                 // simpan status login ke sharedPreferences
                 val sharedPreferences =
                     requireContext().getSharedPreferences("user_session", Context.MODE_PRIVATE)
                 with(sharedPreferences.edit()) {
                     putBoolean("isLoggedIn", true)
+                    putString("userId", userId)
                     apply()
                 }
+
+
+                // simpan juga ke fileHelper (data lokal)
+                val fileHelper = FileHelper(requireContext())
+                fileHelper.writeToFile(userId)
 
                 // arahkan ke main activity/grafment ukur
                 findNavController().navigate(R.id.toFragmentUkur)
