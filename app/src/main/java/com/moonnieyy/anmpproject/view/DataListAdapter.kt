@@ -4,8 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.moonnieyy.anmpproject.databinding.ItemDataBinding
+import com.moonnieyy.anmpproject.model.DataUkur
 
-class DataListAdapter(private var dataList: ArrayList<String>) :
+class DataListAdapter(private var dataList: ArrayList<DataUkur>) :
     RecyclerView.Adapter<DataListAdapter.DataViewHolder>() {
     
     class DataViewHolder(val binding: ItemDataBinding) : RecyclerView.ViewHolder(binding.root)
@@ -19,10 +20,13 @@ class DataListAdapter(private var dataList: ArrayList<String>) :
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
-        holder.binding.txtItem.text = dataList[position]
+        val data = dataList[position]
+        holder.binding.txtAge.text = data.age.toString()
+        holder.binding.txtHeight.text = data.height.toString()
+        holder.binding.txtWeight.text = data.weight.toString()
     }
 
-    fun updateDataList(newList: List<String>) {
+    fun updateDataList(newList: List<DataUkur>) {
         dataList.clear()
         dataList.addAll(newList)
         notifyDataSetChanged()

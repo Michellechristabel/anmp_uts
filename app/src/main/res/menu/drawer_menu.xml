@@ -19,6 +19,14 @@
             android:id="@+id/fragmentProfilAnak"
             android:checkable="true"
             android:checked="true"
-            android:title="Profile Anak" />
+            android:title="Profil Anak" />
+    </group>
+
+    <!-- 🔥 Tambahkan tombol Logout -->
+    <group android:id="@+id/menu_logout">
+        <item
+            android:id="@+id/action_logout"
+            android:icon="@android:drawable/ic_lock_power_off"
+            android:title="Logout" />
     </group>
 </menu>

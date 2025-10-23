@@ -14,7 +14,7 @@ class ProfilViewModel(app: Application) : AndroidViewModel(app) {
     private val PREFS_NAME = "ProfilAnakPrefs"
     private val fileHelper = FileHelper(getApplication())
 
-    // Simpan data profil ke SharedPreferences & ke file
+
     fun simpanData(namaAnak: String, tanggalLahir: String, jenisKelamin: String) {
         val prefs = getApplication<Application>().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         with(prefs.edit()) {
@@ -24,18 +24,18 @@ class ProfilViewModel(app: Application) : AndroidViewModel(app) {
             apply()
         }
 
-        // update LiveData agar fragment bisa observe
+
         nama.value = namaAnak
         tanggal.value = tanggalLahir
         gender.value = jenisKelamin
 
-        // juga simpan ke file sebagai backup
-        val userId = "001"  // bisa diganti sesuai ID user dari login
+
+        val userId = "001"
         val dataFile = "$userId;$namaAnak;$tanggalLahir;$jenisKelamin"
         fileHelper.writeToFile(dataFile)
     }
 
-    // Load data dari SharedPreferences
+
     fun loadData() {
         val prefs = getApplication<Application>().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         nama.value = prefs.getString("nama", "")
@@ -43,7 +43,6 @@ class ProfilViewModel(app: Application) : AndroidViewModel(app) {
         gender.value = prefs.getString("gender", "")
     }
 
-    // Ambil data profil berdasarkan userId dari file lokal
     fun getUserProfile(userId: String) {
         val data = fileHelper.readFromFile()
         if (data.isNotEmpty()) {

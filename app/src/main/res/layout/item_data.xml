@@ -3,12 +3,33 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="12dp"
-    android:orientation="vertical">
+    android:orientation="horizontal"
+    android:gravity="center_vertical">
 
     <TextView
-        android:id="@+id/txtItem"
-        android:layout_width="wrap_content"
+        android:id="@+id/txtAge"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Item"
-        android:textSize="16sp"/>
+        android:layout_weight="1"
+        android:text="Age"
+        android:textSize="16sp"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/txtHeight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Height"
+        android:textSize="16sp"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/txtWeight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Weight"
+        android:textSize="16sp"
+        android:textAlignment="center"/>
 </LinearLayout>

@@ -1,5 +1,6 @@
 package com.moonnieyy.anmpproject.view
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         // set toolbar agar bisa muncul tombol drawer
         setSupportActionBar(binding.toolbar)
 
+
         // fragment yang jadi top-level (tidak tampil tombol back)
         appBarConfiguration = AppBarConfiguration(
             setOf(R.id.fragmentUkur, R.id.fragmentData, R.id.fragmentProfilAnak),
@@ -41,6 +43,21 @@ class MainActivity : AppCompatActivity() {
         // hubungkan bottomNav dan navView (drawer) dengan navController
         binding.bottomNav.setupWithNavController(navController)
         binding.navView.setupWithNavController(navController)
+
+        // setup listener untuk drawer menu items
+        binding.navView.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.action_logout -> {
+                    performLogout()
+                    true
+                }
+                else -> {
+                    NavigationUI.onNavDestinationSelected(menuItem, navController)
+                    binding.drawerLayout.closeDrawers()
+                    true
+                }
+            }
+        }
 
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             if (destination.id == R.id.fragmentLoginActivity || destination.id == R.id.fragmentRegisterActivity) {
@@ -63,5 +80,18 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp()
+    }
+
+    private fun performLogout() {
+        // hapus status login dari SharedPreferences
+        val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        with(sharedPreferences.edit()) {
+            putBoolean("isLoggedIn", false)
+            apply()
+        }
+
+        // navigasi ke login fragment
+        navController.navigate(R.id.fragmentLoginActivity)
+        binding.drawerLayout.closeDrawers()
     }
 }

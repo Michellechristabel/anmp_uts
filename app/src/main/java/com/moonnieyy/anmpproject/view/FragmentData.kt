@@ -9,12 +9,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.moonnieyy.anmpproject.databinding.FragmentDataBinding
+import com.moonnieyy.anmpproject.model.DataUkur
 import com.moonnieyy.anmpproject.viewmodel.DataViewModel
 
 class FragmentData : Fragment() {
     private lateinit var binding: FragmentDataBinding
     private lateinit var viewModel: DataViewModel
-    private val dataListAdapter = DataListAdapter(arrayListOf())
+    private val dataListAdapter = DataListAdapter(arrayListOf<DataUkur>())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
