@@ -2,21 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:id="@+id/menu_ukur">
         <item
-            android:id="@+id/itemUkurTinggi"
+            android:id="@+id/fragmentUkur"
             android:checkable="true"
             android:checked="true"
             android:title="Ukur Berat Badan dan Tinggi" />
     </group>
     <group android:id="@+id/menu_data">
         <item
-            android:id="@+id/itemDataUkur"
+            android:id="@+id/fragmentData"
             android:checkable="true"
             android:checked="true"
             android:title="Data Berat Badan dan Tinggi" />
     </group>
     <group android:id="@+id/menu_profile">
         <item
-            android:id="@+id/itemProfileAnak"
+            android:id="@+id/fragmentProfilAnak"
             android:checkable="true"
             android:checked="true"
             android:title="Profile Anak" />

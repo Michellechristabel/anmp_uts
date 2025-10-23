@@ -29,8 +29,12 @@ class FragmentRegisterActivity : Fragment() {
 
         viewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
 
+        binding.btnSignUp.isEnabled = true
+        binding.btnSignUp.isClickable = true
+        binding.btnSignUp.bringToFront()
         // button sign up
         binding.btnSignUp.setOnClickListener {
+            android.util.Log.d("Register", "SignUp clicked")
             val name = binding.txtSuName.text.toString()
             val email = binding.txtSuEmail.text.toString()
             val password = binding.txtSuPassword.text.toString()

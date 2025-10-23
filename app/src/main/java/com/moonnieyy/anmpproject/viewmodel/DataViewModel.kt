@@ -20,7 +20,6 @@ class DataViewModel(app: Application) : AndroidViewModel(app) {
         loadErrorLD.value = false
 
         try {
-//            val file = File(getApplication<Application>().filesDir, "data_ukur.txt")
             val fh = FileHelper(getApplication())
             val text = fh.readFromFile()
 

@@ -25,14 +25,13 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
 
         val url = "https://www.jsonkeeper.com/b/LLMW"
 
+
         val stringRequest = object : StringRequest(
             Request.Method.GET,
             url,
             { response ->
                 try {
-                    val jsonObj = JSONObject(response)
 
-                    // contoh: simulasi respons sukses
                     val user = JSONObject().apply {
                         put("name", name)
                         put("email", email)

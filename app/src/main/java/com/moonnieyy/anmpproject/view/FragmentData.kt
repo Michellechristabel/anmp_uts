@@ -26,17 +26,12 @@ class FragmentData : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         // init ViewModel
         viewModel = ViewModelProvider(this).get(DataViewModel::class.java)
         viewModel.fetchData()
-
         // setup RecyclerView
         binding.recyclerViewData.layoutManager = LinearLayoutManager(context)
         binding.recyclerViewData.adapter = dataListAdapter
-
-
-
         // observe ViewModel
         observeViewModel()
         viewModel.fetchData()

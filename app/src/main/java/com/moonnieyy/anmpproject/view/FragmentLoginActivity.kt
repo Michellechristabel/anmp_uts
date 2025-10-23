@@ -58,8 +58,12 @@ class FragmentLoginActivity : Fragment() {
             }
         }
 
+        binding.btnLogin.isEnabled = true
+        binding.btnLogin.isClickable = true
+        binding.btnLogin.bringToFront()
         // button login
         binding.btnLogin.setOnClickListener {
+            android.util.Log.d("Login", "Login clicked")
             val email = binding.txtEmail.text.toString()
             val password = binding.txtPassword.text.toString()
 

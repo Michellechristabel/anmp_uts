@@ -15,20 +15,14 @@ class UkurViewModel(app: Application) : AndroidViewModel(app) {
     val saveSuccessLD = MutableLiveData<Boolean>()
 
     private val TAG = "UkurViewModel"
-
-    // Simpan data ke file lokal
     fun simpanData(berat: String, tinggi: String, usia: String) {
         try {
-//            val file = File(getApplication<Application>().filesDir, "fileData.txt")
             val fh = FileHelper(getApplication())
             val old = fh.readFromFile().trimEnd()
             val content = "Berat: $berat, Tinggi: $tinggi, Usia: $usia\n"
             val joined = if (old.isBlank()) content else old + "\n" + content
             fh.writeToFile(joined)
 
-//            FileOutputStream(file, true).bufferedWriter().use {
-//                it.write(content)
-//            }
             saveSuccessLD.value = true
             Log.d(TAG, "Data tersimpan: $content")
         } catch (e: Exception) {
@@ -36,11 +30,5 @@ class UkurViewModel(app: Application) : AndroidViewModel(app) {
             Log.e(TAG, "Gagal simpan data: ${e.message}")
         }
     }
-//    fun testSaveFile() {
-//        val fileHelper = FileHelper(getApplication())
-//        fileHelper.writeToFile("Hello World")
-//        val content = fileHelper.readFromFile()
-//        Log.d("print_file", content)
-//        Log.d("print_file", fileHelper.getFilePath())
-//    }
+
 }

@@ -29,9 +29,6 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
             url,
             { response ->
                 try {
-                    val jsonObj = JSONObject(response)
-
-                    // anggap login selalu berhasil kalau email & password tidak kosong
                     if (email.isNotEmpty() && password.isNotEmpty()) {
                         val user = JSONObject().apply {
                             put("email", email)

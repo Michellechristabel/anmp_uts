@@ -42,14 +42,20 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.setupWithNavController(navController)
         binding.navView.setupWithNavController(navController)
 
-        // sembunyikan bottomNav & toolbar di halaman login / register
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             if (destination.id == R.id.fragmentLoginActivity || destination.id == R.id.fragmentRegisterActivity) {
                 binding.bottomNav.visibility = View.GONE
                 supportActionBar?.hide()
+                binding.drawerLayout.closeDrawers()
+                binding.drawerLayout.setDrawerLockMode(
+                    androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
+                )
             } else {
                 binding.bottomNav.visibility = View.VISIBLE
                 supportActionBar?.show()
+                binding.drawerLayout.setDrawerLockMode(
+                    androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_UNLOCKED
+                )
             }
         }
     }

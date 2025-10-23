@@ -1,19 +1,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/itemUkur"
+        android:id="@+id/fragmentUkur"
         android:icon="@drawable/baseline_accessibility_24"
         android:title="Ukur"
         android:visible="true"
         app:showAsAction="always" />
     <item
-        android:id="@+id/itemData"
+        android:id="@+id/fragmentData"
         android:icon="@drawable/baseline_list_alt_24"
         android:title="Data"
         android:visible="true"
         app:showAsAction="always" />
     <item
-        android:id="@+id/itemProfile"
+        android:id="@+id/fragmentProfilAnak"
         android:icon="@drawable/baseline_person_24"
         android:title="Profile"
         android:visible="true"
