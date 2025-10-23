@@ -44,7 +44,7 @@ class FragmentUkur : Fragment() {
                 binding.inputTinggiBadan.text?.clear()
                 binding.inputUsia.text?.clear()
 
-                findNavController().navigate(R.id.navprofilkeanak)
+                findNavController().navigate(R.id.navukurkeprofil)
 
             } else {
                 Toast.makeText(context, "Semua field harus diisi!", Toast.LENGTH_SHORT).show()
