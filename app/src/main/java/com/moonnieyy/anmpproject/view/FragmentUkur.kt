@@ -27,7 +27,8 @@ class FragmentUkur : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(UkurViewModel::class.java)
+        viewModel = ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+        ).get(UkurViewModel::class.java)
         
         binding.btnTambahData.setOnClickListener {
             val berat = binding.inputBeratBadan.text.toString()

@@ -39,6 +39,7 @@ class FragmentData : Fragment() {
 
         // observe ViewModel
         observeViewModel()
+        viewModel.fetchData()
     }
 
     private fun observeViewModel() {
@@ -47,4 +48,10 @@ class FragmentData : Fragment() {
             binding.recyclerViewData.visibility = View.VISIBLE
         })
     }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.fetchData()
+    }
+
 }

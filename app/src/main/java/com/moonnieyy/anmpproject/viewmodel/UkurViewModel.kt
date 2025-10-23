@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.moonnieyy.anmpproject.util.FileHelper
 import java.io.File
 import java.io.FileOutputStream
 
@@ -18,11 +19,16 @@ class UkurViewModel(app: Application) : AndroidViewModel(app) {
     // Simpan data ke file lokal
     fun simpanData(berat: String, tinggi: String, usia: String) {
         try {
-            val file = File(getApplication<Application>().filesDir, "data_ukur.txt")
+//            val file = File(getApplication<Application>().filesDir, "fileData.txt")
+            val fh = FileHelper(getApplication())
+            val old = fh.readFromFile().trimEnd()
             val content = "Berat: $berat, Tinggi: $tinggi, Usia: $usia\n"
-            FileOutputStream(file, true).bufferedWriter().use {
-                it.write(content)
-            }
+            val joined = if (old.isBlank()) content else old + "\n" + content
+            fh.writeToFile(joined)
+
+//            FileOutputStream(file, true).bufferedWriter().use {
+//                it.write(content)
+//            }
             saveSuccessLD.value = true
             Log.d(TAG, "Data tersimpan: $content")
         } catch (e: Exception) {
@@ -30,4 +36,11 @@ class UkurViewModel(app: Application) : AndroidViewModel(app) {
             Log.e(TAG, "Gagal simpan data: ${e.message}")
         }
     }
+//    fun testSaveFile() {
+//        val fileHelper = FileHelper(getApplication())
+//        fileHelper.writeToFile("Hello World")
+//        val content = fileHelper.readFromFile()
+//        Log.d("print_file", content)
+//        Log.d("print_file", fileHelper.getFilePath())
+//    }
 }

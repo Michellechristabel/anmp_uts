@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.moonnieyy.anmpproject.util.FileHelper
 import java.io.File
 
 class DataViewModel(app: Application) : AndroidViewModel(app) {
@@ -12,20 +13,25 @@ class DataViewModel(app: Application) : AndroidViewModel(app) {
     val loadingLD = MutableLiveData<Boolean>()
     private val TAG = "DataViewModel"
 
+    private val fh by lazy { FileHelper(getApplication()) }
+
     fun fetchData() {
         loadingLD.value = true
         loadErrorLD.value = false
 
         try {
-            val file = File(getApplication<Application>().filesDir, "data_ukur.txt")
-            if (file.exists()) {
-                val dataList = file.readLines()
-                dataUkurLD.value = dataList
-                Log.d(TAG, "Data berhasil dibaca: $dataList")
-            } else {
-                dataUkurLD.value = emptyList()
-                Log.d(TAG, "File tidak ditemukan")
-            }
+//            val file = File(getApplication<Application>().filesDir, "data_ukur.txt")
+            val fh = FileHelper(getApplication())
+            val text = fh.readFromFile()
+
+            val dataList: List<String> =
+                if (text.isBlank()) emptyList()
+                else text.lines()
+                    .map { it.trim() }
+                    .filter { it.isNotEmpty() }
+
+            dataUkurLD.value = dataList
+            Log.d(TAG, "Data berhasil dibaca (${dataList.size} baris) dari: ${fh.getFilePath()}")
             loadingLD.value = false
         } catch (e: Exception) {
             loadErrorLD.value = true
