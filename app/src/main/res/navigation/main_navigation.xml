@@ -36,7 +36,7 @@
     <fragment
         android:id="@+id/fragmentLoginActivity"
         android:name="com.moonnieyy.anmpproject.view.FragmentLoginActivity"
-        android:label="FragmentLoginActivity" >
+        android:label="FragmentLoginActivity">
         <action
             android:id="@+id/toFragmentUkur"
             app:destination="@id/fragmentUkur" />
@@ -47,6 +47,10 @@
     <fragment
         android:id="@+id/fragmentRegisterActivity"
         android:name="com.moonnieyy.anmpproject.view.FragmentRegisterActivity"
-        android:label="FragmentRegisterActivity" />
+        android:label="FragmentRegisterActivity">
+        <action
+            android:id="@+id/toFragmentLogin"
+            app:destination="@id/fragmentLoginActivity" />
+    </fragment>
 
 </navigation>

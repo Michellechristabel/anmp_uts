@@ -36,13 +36,14 @@ class FragmentRegisterActivity : Fragment() {
             val password = binding.txtSuPassword.text.toString()
             val confirmPassword = binding.txtSuConfirmPassword.text.toString()
 
-            if(name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+            if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
                 Toast.makeText(context, "Lengkapi semua data!", Toast.LENGTH_SHORT).show()
+            } else if (password != confirmPassword) {
+                Toast.makeText(context, "Password tidak sama!", Toast.LENGTH_SHORT).show()
             } else {
                 viewModel.registerUser(name, email, password, confirmPassword)
             }
         }
-
         observeViewModel()
     }
 
@@ -52,7 +53,7 @@ class FragmentRegisterActivity : Fragment() {
                 Toast.makeText(requireContext(), "Register berhasil!", Toast.LENGTH_SHORT).show()
 
                 // kembali ke login
-                findNavController().navigate(R.id.toFragmentRegister)
+                findNavController().navigate(R.id.toFragmentLogin)
             } else if (response != null) {
                 Toast.makeText(requireContext(), "Register gagal!", Toast.LENGTH_SHORT).show()
             } else {

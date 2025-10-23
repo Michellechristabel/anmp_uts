@@ -39,6 +39,25 @@ class FragmentLoginActivity : Fragment() {
             return
         }
 
+        viewModel.loginResultLD.observe(viewLifecycleOwner) { response ->
+            if (response != null && response.optBoolean("success") == true) {
+                Toast.makeText(requireContext(), "Login berhasil!", Toast.LENGTH_SHORT).show()
+
+                // simpan status login ke sharedPreferences
+                val sharedPreferences =
+                    requireContext().getSharedPreferences("user_session", Context.MODE_PRIVATE)
+                with(sharedPreferences.edit()) {
+                    putBoolean("isLoggedIn", true)
+                    apply()
+                }
+
+                // arahkan ke main activity/grafment ukur
+                findNavController().navigate(R.id.toFragmentUkur)
+            } else {
+                Toast.makeText(requireContext(), "Login gagal!", Toast.LENGTH_SHORT).show()
+            }
+        }
+
         // button login
         binding.btnLogin.setOnClickListener {
             val email = binding.txtEmail.text.toString()
@@ -52,24 +71,8 @@ class FragmentLoginActivity : Fragment() {
             }
         }
 
-        // button register
-        viewModel.loginResultLD.observe(viewLifecycleOwner) { response ->
-            if (response != null && response.optBoolean("success") == true) {
-                Toast.makeText(requireContext(), "Login berhasil!", Toast.LENGTH_SHORT).show()
-
-                // simpan status login ke sharedPreferences
-                val sharedPreferences =
-                    requireContext().getSharedPreferences("user_session", Context.MODE_PRIVATE)
-                with(sharedPreferences.edit()) {
-                    putBoolean("isLoggedIn", true)
-                    apply()
-                }
-
-                // arahkan ke main activity
-                findNavController().navigate(R.id.toFragmentUkur)
-            } else {
-                Toast.makeText(requireContext(), "Login gagal!", Toast.LENGTH_SHORT).show()
-            }
+        binding.btnRegister.setOnClickListener {
+            findNavController().navigate(R.id.toFragmentRegister)
         }
     }
 

@@ -9,7 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
         <EditText
             android:id="@+id/txtEmail"
@@ -17,6 +18,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="60dp"
             android:ems="10"
+            android:fitsSystemWindows="false"
             android:hint="Enter Email"
             android:inputType="textEmailAddress"
             app:layout_constraintEnd_toEndOf="parent"

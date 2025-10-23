@@ -1,21 +1,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <item
-        android:id="@+id/fragmentUkur"
+        android:id="@+id/itemUkur"
+        android:icon="@drawable/baseline_accessibility_24"
         android:title="Ukur"
-        app:icon="@drawable/outline_accessible_menu_24"
+        android:visible="true"
         app:showAsAction="always" />
-
     <item
-        android:id="@+id/fragmentData"
+        android:id="@+id/itemData"
+        android:icon="@drawable/baseline_list_alt_24"
         android:title="Data"
-        app:icon="@drawable/outline_database_24"
+        android:visible="true"
         app:showAsAction="always" />
-
     <item
-        android:id="@+id/fragmentProfilAnak"
-        android:title="Profil"
-        app:icon="@drawable/outline_account_circle_24"
+        android:id="@+id/itemProfile"
+        android:icon="@drawable/baseline_person_24"
+        android:title="Profile"
+        android:visible="true"
         app:showAsAction="always" />
 </menu>

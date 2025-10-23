@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/menu_ukur">
+        <item
+            android:id="@+id/itemUkurTinggi"
+            android:checkable="true"
+            android:checked="true"
+            android:title="Ukur Berat Badan dan Tinggi" />
+    </group>
+    <group android:id="@+id/menu_data">
+        <item
+            android:id="@+id/itemDataUkur"
+            android:checkable="true"
+            android:checked="true"
+            android:title="Data Berat Badan dan Tinggi" />
+    </group>
+    <group android:id="@+id/menu_profile">
+        <item
+            android:id="@+id/itemProfileAnak"
+            android:checkable="true"
+            android:checked="true"
+            android:title="Profile Anak" />
+    </group>
+</menu>
