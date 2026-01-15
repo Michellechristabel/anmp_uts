@@ -1,4 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="ukur"
+            type="com.moonnieyy.anmpproject.model.Ukur" />
+    </data>
+
+    <?xml version="1.0" encoding="utf-8"?>
+
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -16,7 +27,7 @@
             android:id="@+id/labelBeratBadan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Berat Badan (Kg)"
+            android:text="@{ukur.weight}"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -38,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Tinggi Badan (Cm)"
+            android:text="@{ukur.height}"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/inputBeratBadan"
             app:layout_constraintStart_toStartOf="parent" />
@@ -60,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Usia (Tahun)"
+            android:text="@{ukur.age}"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/inputTinggiBadan"
             app:layout_constraintStart_toStartOf="parent" />
@@ -89,3 +100,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
+</layout>
