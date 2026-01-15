@@ -5,40 +5,34 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.moonnieyy.anmpproject.model.Ukur
-//import com.moonnieyy.anmpproject.model.entity.MeasurementEntity
 import com.moonnieyy.anmpproject.util.buildDb
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class UkurViewModel(app: Application) : AndroidViewModel(app), CoroutineScope {
-    val beratLD = MutableLiveData<String>()
-    val tinggiLD = MutableLiveData<String>()
-    val usiaLD = MutableLiveData<String>()
-    val saveSuccessLD = MutableLiveData<Boolean>()
 
-    private val TAG = "UkurViewModel"
+    val saveSuccessLD = MutableLiveData<Boolean>()
 
     private val job = Job()
     override val coroutineContext = job + Dispatchers.IO
 
-    fun simpanData(berat: String, tinggi: String, usia: String) {
+    private val TAG = "UkurViewModel"
+
+    fun simpanData(ukur: Ukur) {
         launch {
             try {
-                val weight = berat.toInt()
-                val height = tinggi.toInt()
-                val age = usia.toInt()
                 val db = buildDb(getApplication())
-                db.measurementDao().insert(
-                    Ukur(weight = weight, height = height, age = age)
-                )
+                db.measurementDao().insert(ukur)
                 saveSuccessLD.postValue(true)
-                Log.d(TAG, "Data tersimpan ke DB: w=$weight, h=$height, a=$age")
+                Log.d(TAG, "Data tersimpan: $ukur")
             } catch (e: Exception) {
                 saveSuccessLD.postValue(false)
-                Log.e(TAG, "Gagal simpan data: ${e.message}")
+                Log.e(TAG, "Gagal simpan data", e)
             }
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        job.cancel()
     }
 }

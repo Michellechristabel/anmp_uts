@@ -7,17 +7,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
-import com.moonnieyy.anmpproject.R
 import com.moonnieyy.anmpproject.databinding.FragmentUkurBinding
+import com.moonnieyy.anmpproject.model.Ukur
 import com.moonnieyy.anmpproject.viewmodel.UkurViewModel
 
-class FragmentUkur : Fragment() {
+class FragmentUkur : Fragment(), UkurListener {
+
     private lateinit var binding: FragmentUkurBinding
     private lateinit var viewModel: UkurViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentUkurBinding.inflate(inflater, container, false)
@@ -27,26 +28,30 @@ class FragmentUkur : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
-        ).get(UkurViewModel::class.java)
-        
-        binding.btnTambahData.setOnClickListener {
-            val berat = binding.inputBeratBadan.text.toString()
-            val tinggi = binding.inputTinggiBadan.text.toString()
-            val usia = binding.inputUsia.text.toString()
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+        )[UkurViewModel::class.java]
 
+        binding.ukur = Ukur()
+        binding.listener = this
+        binding.lifecycleOwner = viewLifecycleOwner
+    }
 
-            if (berat.isNotEmpty() && tinggi.isNotEmpty() && usia.isNotEmpty()) {
-                viewModel.simpanData(berat, tinggi, usia)
-                Toast.makeText(context, "Data berhasil disimpan", Toast.LENGTH_SHORT).show()
+    override fun onSaveClick(v: View) {
+        val ukur = binding.ukur!!
 
-                binding.inputBeratBadan.text?.clear()
-                binding.inputTinggiBadan.text?.clear()
-                binding.inputUsia.text?.clear()
-
-            } else {
-                Toast.makeText(context, "Semua field harus diisi!", Toast.LENGTH_SHORT).show()
-            }
+        if (
+            ukur.weight.isNotEmpty() &&
+            ukur.height.isNotEmpty() &&
+            ukur.age.isNotEmpty()
+        ) {
+            viewModel.simpanData(ukur)
+            Toast.makeText(context, "Data berhasil disimpan", Toast.LENGTH_SHORT).show()
+            binding.ukur = Ukur() // reset
+        } else {
+            Toast.makeText(context, "Semua field harus diisi!", Toast.LENGTH_SHORT).show()
         }
     }
 }
+

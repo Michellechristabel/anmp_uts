@@ -2,103 +2,110 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
         <variable
-            name="viewmodel"
-            type="com.moonnieyy.anmpproject.viewmodel.UkurViewModel" />
+            name="ukur"
+            type="com.moonnieyy.anmpproject.model.Ukur" />
+
+        <variable
+            name="listener"
+            type="com.moonnieyy.anmpproject.view.UkurListener" />
     </data>
 
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.FragmentUkur">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="24dp">
+        tools:context=".view.FragmentUkur">
 
-        <!-- Label & Input Berat Badan -->
-        <TextView
-            android:id="@+id/labelBeratBadan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Berat badan (kg)"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="24dp">
 
-        <EditText
-            android:id="@+id/inputBeratBadan"
-            android:layout_width="366dp"
-            android:layout_height="71dp"
-            android:layout_marginTop="8dp"
-            android:hint="Masukkan berat badan"
-            android:text="@={viewmodel.beratLD}"
-            android:inputType="number"
+            <!-- Label Berat Badan -->
+            <TextView
+                android:id="@+id/labelBeratBadan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Berat Badan (kg)"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/labelBeratBadan" />
+            <!-- Input Berat Badan -->
+            <EditText
+                android:id="@+id/inputBeratBadan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="Masukkan berat badan"
+                android:inputType="number"
+                android:text="@={ukur.weight}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelBeratBadan" />
 
-        <!-- Label & Input Tinggi Badan -->
-        <TextView
-            android:id="@+id/labelTinggiBadan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Tinggi badan (cm)"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/inputBeratBadan"
-            app:layout_constraintStart_toStartOf="parent" />
+            <!-- Label Tinggi Badan -->
+            <TextView
+                android:id="@+id/labelTinggiBadan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Tinggi Badan (cm)"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inputBeratBadan" />
 
-        <EditText
-            android:id="@+id/inputTinggiBadan"
-            android:layout_width="374dp"
-            android:layout_height="71dp"
-            android:layout_marginTop="8dp"
-            android:hint="Masukkan tinggi badan"
-            android:text="@={viewmodel.tinggiLD}"
-            android:inputType="number"
+            <!-- Input Tinggi Badan -->
+            <EditText
+                android:id="@+id/inputTinggiBadan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="Masukkan tinggi badan"
+                android:inputType="number"
+                android:text="@={ukur.height}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelTinggiBadan" />
 
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/labelTinggiBadan" />
+            <!-- Label Usia -->
+            <TextView
+                android:id="@+id/labelUsia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Usia (tahun)"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inputTinggiBadan" />
 
-        <!-- Label & Input Usia -->
-        <TextView
-            android:id="@+id/labelUsia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Usia (Tahun)"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/inputTinggiBadan"
-            app:layout_constraintStart_toStartOf="parent" />
+            <!-- Input Usia -->
+            <EditText
+                android:id="@+id/inputUsia"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="Masukkan usia"
+                android:inputType="number"
+                android:text="@={ukur.age}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelUsia" />
 
-        <EditText
-            android:id="@+id/inputUsia"
-            android:layout_width="362dp"
-            android:layout_height="71dp"
-            android:layout_marginTop="8dp"
-            android:hint="Masukkan usia anak"
-            android:text="@={viewmodel.usiaLD}"
-            android:inputType="number"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/labelUsia" />
+            <!-- Tombol Simpan -->
+            <Button
+                android:id="@+id/btnTambahData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Simpan Data"
+                android:onClick="@{listener::onSaveClick}"
+                app:layout_constraintTop_toBottomOf="@id/inputUsia"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Tombol Tambah Data -->
-        <Button
-            android:id="@+id/btnTambahData"
-            android:layout_width="157dp"
-            android:layout_height="62dp"
-            android:layout_marginTop="32dp"
-            android:text="Tambah Data"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/inputUsia" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 </layout>
