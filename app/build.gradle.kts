@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.moonnieyy.anmpproject"
-    compileSdk = 34
+    compileSdk = 36
 
     buildFeatures {
         viewBinding = true
@@ -15,7 +15,7 @@ android {
 
     defaultConfig {
         applicationId = "com.moonnieyy.anmpproject"
-        minSdk = 27
+        minSdk = 21
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
