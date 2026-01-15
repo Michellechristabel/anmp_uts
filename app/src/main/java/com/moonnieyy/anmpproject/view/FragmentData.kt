@@ -11,13 +11,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.moonnieyy.anmpproject.R
 import com.moonnieyy.anmpproject.databinding.FragmentDataBinding
-import com.moonnieyy.anmpproject.model.DataUkur
+//import com.moonnieyy.anmpproject.model.DataUkur
+import com.moonnieyy.anmpproject.model.Ukur
 import com.moonnieyy.anmpproject.viewmodel.DataViewModel
 
 class FragmentData : Fragment() {
     private lateinit var binding: FragmentDataBinding
     private lateinit var viewModel: DataViewModel
-    private val dataListAdapter = DataListAdapter(arrayListOf<DataUkur>())
+    private val dataListAdapter = DataListAdapter(arrayListOf<Ukur>())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +42,7 @@ class FragmentData : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.dataUkurLD.observe(viewLifecycleOwner, Observer {
+        viewModel.ukurLD.observe(viewLifecycleOwner, Observer {
             dataListAdapter.updateDataList(it)
             binding.recyclerViewData.visibility = View.VISIBLE
         })

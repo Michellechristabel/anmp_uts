@@ -12,6 +12,7 @@ import com.moonnieyy.anmpproject.model.dao.ProfileDao
 @Database(
     entities = arrayOf(Ukur::class, Akun::class),
     version = 1,
+    exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun measurementDao(): MeasurementDao
