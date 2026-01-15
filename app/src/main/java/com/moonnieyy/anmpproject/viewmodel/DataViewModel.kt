@@ -6,15 +6,21 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.moonnieyy.anmpproject.model.DataUkur
 import com.moonnieyy.anmpproject.util.FileHelper
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import java.io.File
 
-class DataViewModel(app: Application) : AndroidViewModel(app) {
+class DataViewModel(app: Application) : AndroidViewModel(app), CoroutineScope {
     val dataUkurLD = MutableLiveData<List<DataUkur>>()
     val loadErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
     private val TAG = "DataViewModel"
 
     private val fh by lazy { FileHelper(getApplication()) }
+
+    private val job = Job()
+    override val coroutineContext = job + Dispatchers.IO
 
     fun fetchData() {
         loadingLD.value = true
