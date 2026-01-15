@@ -17,5 +17,5 @@ fun buildDb(context: Context): AppDatabase {
 }
 
 fun buildDB(context: Context): AppDatabase {
-    return AppDatabase(context)
+    return AppDatabase.buildDatabase(context)
 }

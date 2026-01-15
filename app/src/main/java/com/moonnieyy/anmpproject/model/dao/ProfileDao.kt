@@ -12,11 +12,11 @@ import com.moonnieyy.anmpproject.model.Profil
 @Dao
 interface ProfileDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(akun: Akun)
+    fun insert(akun: Akun)
 
     @Update
-    suspend fun update(akun: Akun)
+    fun update(akun: Akun)
 
     @Query("SELECT * FROM akun WHERE id = 1")
-    suspend fun getProfile(): Akun?
+    fun getProfile(): Akun?
 }

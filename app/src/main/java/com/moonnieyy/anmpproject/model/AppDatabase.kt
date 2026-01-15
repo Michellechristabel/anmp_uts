@@ -10,7 +10,7 @@ import com.moonnieyy.anmpproject.model.dao.ProfileDao
 //import com.moonnieyy.anmpproject.model.entity.ProfileEntity
 
 @Database(
-    entities = [DataUkur::class, Profil::class],
+    entities = arrayOf(Ukur::class, Akun::class),
     version = 1,
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -26,14 +26,12 @@ abstract class AppDatabase : RoomDatabase() {
             AppDatabase::class.java,
             "newappdb").build()
 
-        operator fun invoke(context: Context): AppDatabase {
-            return instance ?: synchronized(LOCK) {
-                instance ?: Room.databaseBuilder(
-                    context.applicationContext,
-                    AppDatabase::class.java,
-                    "newappdb"
-                ).build().also {
-                    instance = it
+        operator fun invoke(context: Context){
+            if(instance == null) {
+                synchronized(LOCK) {
+                    instance ?: buildDatabase(context).also {
+                        instance = it
+                    }
                 }
             }
         }
