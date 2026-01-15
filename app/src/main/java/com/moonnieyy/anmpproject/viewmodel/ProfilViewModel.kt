@@ -4,15 +4,29 @@ import android.app.Application
 import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.moonnieyy.anmpproject.model.AppDatabase
 import com.moonnieyy.anmpproject.util.FileHelper
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class ProfilViewModel(app: Application) : AndroidViewModel(app) {
+class ProfilViewModel(app: Application) : AndroidViewModel(app), CoroutineScope
+{
     val nama = MutableLiveData<String>()
     val tanggal = MutableLiveData<String>()
     val gender = MutableLiveData<String>()
+    val todoLoadErrorLD = MutableLiveData<Boolean>()
+    val loadingLD = MutableLiveData<Boolean>()
 
     private val PREFS_NAME = "ProfilAnakPrefs"
     private val fileHelper = FileHelper(getApplication())
+    private var job = Job()
+
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.IO
+
 
 
     fun simpanData(namaAnak: String, tanggalLahir: String, jenisKelamin: String) {
@@ -56,6 +70,15 @@ class ProfilViewModel(app: Application) : AndroidViewModel(app) {
                 tanggal.value = savedTanggal
                 gender.value = savedGender
             }
+        }
+    }
+
+    fun refresh(){
+        loadingLD.value = true
+        todoLoadErrorLD.value = false
+        launch{
+            val db = AppDatabase.buildDatabase(getApplication())
+            
         }
     }
 }
