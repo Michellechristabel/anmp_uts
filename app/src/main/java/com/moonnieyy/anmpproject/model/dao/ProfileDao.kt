@@ -17,6 +17,6 @@ interface ProfileDao {
     @Update
     fun update(akun: Akun)
 
-    @Query("SELECT * FROM akun WHERE id = 1")
+    @Query("SELECT * FROM Akun WHERE id = 1")
     fun getProfile(): Akun?
 }
