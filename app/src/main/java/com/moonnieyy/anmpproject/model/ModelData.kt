@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class DataUkur(
+data class Ukur(
     @ColumnInfo(name="weight")
     var weight:Int?,
     @ColumnInfo(name="height")

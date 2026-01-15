@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class Profil(
+data class Akun(
     @ColumnInfo(name="name")
     var name:String?,
     @ColumnInfo(name="birthdate")

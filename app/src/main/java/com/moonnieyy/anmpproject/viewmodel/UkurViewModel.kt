@@ -4,7 +4,8 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.moonnieyy.anmpproject.model.entity.MeasurementEntity
+import com.moonnieyy.anmpproject.model.Ukur
+//import com.moonnieyy.anmpproject.model.entity.MeasurementEntity
 import com.moonnieyy.anmpproject.util.buildDb
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -30,7 +31,7 @@ class UkurViewModel(app: Application) : AndroidViewModel(app), CoroutineScope {
                 val age = usia.toInt()
                 val db = buildDb(getApplication())
                 db.measurementDao().insert(
-                    MeasurementEntity(weight = weight, height = height, age = age)
+                    Ukur(weight = weight, height = height, age = age)
                 )
                 saveSuccessLD.postValue(true)
                 Log.d(TAG, "Data tersimpan ke DB: w=$weight, h=$height, a=$age")
