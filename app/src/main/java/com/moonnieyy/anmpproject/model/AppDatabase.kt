@@ -6,13 +6,12 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.moonnieyy.anmpproject.model.dao.MeasurementDao
 import com.moonnieyy.anmpproject.model.dao.ProfileDao
-import com.moonnieyy.anmpproject.model.entity.MeasurementEntity
-import com.moonnieyy.anmpproject.model.entity.ProfileEntity
+//import com.moonnieyy.anmpproject.model.entity.MeasurementEntity
+//import com.moonnieyy.anmpproject.model.entity.ProfileEntity
 
 @Database(
-    entities = [MeasurementEntity::class, ProfileEntity::class],
+    entities = arrayOf(DataUkur::class, Profil::class),
     version = 1,
-    exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun measurementDao(): MeasurementDao
@@ -25,7 +24,7 @@ abstract class AppDatabase : RoomDatabase() {
         fun buildDatabase(context: Context) = Room.databaseBuilder(
             context.applicationContext,
             AppDatabase::class.java,
-            "newappdb")
+            "newappdb").build()
 
         operator fun invoke(context: Context){
             if(instance == null) {
