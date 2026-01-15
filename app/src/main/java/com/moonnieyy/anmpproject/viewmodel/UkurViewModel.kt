@@ -10,6 +10,7 @@ import kotlinx.coroutines.*
 
 class UkurViewModel(app: Application) : AndroidViewModel(app), CoroutineScope {
 
+    val ukur = MutableLiveData(Ukur())
     val saveSuccessLD = MutableLiveData<Boolean>()
 
     private val job = Job()

@@ -33,25 +33,27 @@ class FragmentUkur : Fragment(), UkurListener {
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
         )[UkurViewModel::class.java]
 
-        binding.ukur = Ukur()
-        binding.listener = this
+
+        binding.ukur = Ukur("", "", "")
+        binding.viewmodel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+        binding.listener = this
     }
 
     override fun onSaveClick(v: View) {
-        val ukur = binding.ukur!!
+        // Ambil data terbaru dari binding
+        val dataUkur = binding.ukur
 
-        if (
-            ukur.weight.isNotEmpty() &&
-            ukur.height.isNotEmpty() &&
-            ukur.age.isNotEmpty()
+        if (dataUkur != null &&
+            dataUkur.weight.isNotEmpty() &&
+            dataUkur.height.isNotEmpty() &&
+            dataUkur.age.isNotEmpty()
         ) {
-            viewModel.simpanData(ukur)
+            viewModel.simpanData(dataUkur)
             Toast.makeText(context, "Data berhasil disimpan", Toast.LENGTH_SHORT).show()
-            binding.ukur = Ukur() // reset
+            binding.ukur = Ukur("", "", "")
         } else {
             Toast.makeText(context, "Semua field harus diisi!", Toast.LENGTH_SHORT).show()
         }
     }
 }
-

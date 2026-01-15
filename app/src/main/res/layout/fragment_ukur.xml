@@ -7,6 +7,9 @@
         <variable
             name="ukur"
             type="com.moonnieyy.anmpproject.model.Ukur" />
+        <variable
+            name="viewmodel"
+            type="com.moonnieyy.anmpproject.viewmodel.UkurViewModel" />
 
         <variable
             name="listener"

@@ -9,9 +9,10 @@ import com.moonnieyy.anmpproject.model.Ukur
 
 @Dao
 interface MeasurementDao {
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(ukur: Ukur)
 
-    @Query("SELECT * FROM Ukur ORDER BY id DESC")
+    @Query("SELECT * FROM ukur ORDER BY id DESC")
     fun selectAll(): List<Ukur>
 }

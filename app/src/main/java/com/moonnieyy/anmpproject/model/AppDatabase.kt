@@ -17,11 +17,21 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun profileDao(): ProfileDao
 
     companion object {
-        fun buildDatabase(context: Context): AppDatabase =
-            Room.databaseBuilder(
-                context.applicationContext,
-                AppDatabase::class.java,
-                "anmp_uas_db"
-            ).build()
+        @Volatile
+        private var INSTANCE: AppDatabase? = null
+
+        fun buildDatabase(context: Context): AppDatabase {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    AppDatabase::class.java,
+                    "anmp_uas_db"
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
+                INSTANCE = instance
+                instance
+            }
+        }
     }
 }
